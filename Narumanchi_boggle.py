@@ -1,3 +1,4 @@
+# author : Sai Shanmukha Narumanchi
 import random
 dim=4
 scoreDict = {3: 1, 4: 1, 5: 2, 6: 3, 7: 5}
@@ -15,7 +16,6 @@ def isAdjacent(pos,word,boggleTray,visited):
         return False
     for i in range(x-1,x+2):
         for j in range(y-1,y+2):
-
             if((x==i and y==j) or (i not in range(dim) or j not in range(dim))):
                 continue
             if(word[0]==boggleTray[i][j] and not visited[i][j]):
@@ -66,7 +66,7 @@ def printOutput(word,score):
 
 
 def getRandomBoggleTray(diceCombination):
-    return [[diceCombination[i+j][random.randint(0,5)] for i in range(4)] for j in range(4)]
+    return [[diceCombination[i+j][random.randint(0,len(diceCombination[0]))] for i in range(dim)] for j in range(dim)]
 
 
 def printBoggleTray(boggleTray):
