@@ -18,10 +18,11 @@ def isAdjacent(pos,word,boggleTray,visited):
         for j in range(y-1,y+2):
             if((x==i and y==j) or (i not in range(dim) or j not in range(dim))):
                 continue
-            if(word[0]==boggleTray[i][j] and not visited[i][j]):
+            if(word[0]==boggleTray[i][j] or word[0:2] == boggleTray[i][j] and not visited[i][j]):
                 visited[i][j]=True
                 # print(boggleTray[i][j],i,j)
-                if(isAdjacent((i,j), word[1:],boggleTray, visited)):
+                nextWord = word[1:] if boggleTray[i][j]!='QU' else word[2:]
+                if(isAdjacent((i,j), nextWord,boggleTray, visited)):
                     return True
                 else:
                     visited[i][j]=False
@@ -32,10 +33,11 @@ def isInGrid(word,boggleTray):
     visited=[[False for i in range(dim)] for j in range(dim)]
     for i in range(dim):
         for j in range(dim):
-            if(boggleTray[i][j]==word[0]):
+            if(boggleTray[i][j]==word[0] or word[0:2] == boggleTray[i][j]):
                 # print(boggleTray[i][j],i,j)
                 visited[i][j]=True
-                if(isAdjacent((i,j), word[1:], boggleTray, visited)):
+                nextWord = word[1:] if boggleTray[i][j]!='QU' else word[2:]
+                if(isAdjacent((i,j), nextWord,boggleTray, visited)):
                     return True
                 else:
                     visited[i][j]=False
@@ -88,7 +90,7 @@ def readInput():
 
 if __name__ == "__main__":
     wordCollection = populateWordCollection()
-    diceCombination = [['A', 'E', 'A', 'N', 'E', 'G'],['A', 'H', 'S', 'P', 'C', 'O'],['A', 'S', 'P', 'F', 'F', 'K'], ['O', 'B', 'J', 'O', 'A', 'B'], ['I', 'O', 'T', 'M', 'U', 'C'], ['R', 'Y', 'V', 'D', 'E', 'L'], ['L', 'R', 'E', 'I', 'X', 'D'], ['E', 'I', 'U', 'N', 'E', 'S'],['W', 'N', 'G', 'E', 'E', 'H'],['L', 'N', 'H', 'N', 'R', 'Z'], ['T', 'S', 'T', 'I', 'Y', 'D'],['O', 'W', 'T', 'O', 'A', 'T'],['E', 'R', 'T', 'T', 'Y', 'L'],['T', 'O', 'E', 'S', 'S', 'I'],['T', 'E', 'R', 'W', 'H', 'V'],['N', 'U', 'I', 'H', 'M', 'Qu']]
+    diceCombination = [['A', 'E', 'A', 'N', 'E', 'G'],['A', 'H', 'S', 'P', 'C', 'O'],['A', 'S', 'P', 'F', 'F', 'K'], ['O', 'B', 'J', 'O', 'A', 'B'], ['I', 'O', 'T', 'M', 'U', 'C'], ['R', 'Y', 'V', 'D', 'E', 'L'], ['L', 'R', 'E', 'I', 'X', 'D'], ['E', 'I', 'U', 'N', 'E', 'S'],['W', 'N', 'G', 'E', 'E', 'H'],['L', 'N', 'H', 'N', 'R', 'Z'], ['T', 'S', 'T', 'I', 'Y', 'D'],['O', 'W', 'T', 'O', 'A', 'T'],['E', 'R', 'T', 'T', 'Y', 'L'],['T', 'O', 'E', 'S', 'S', 'I'],['T', 'E', 'R', 'W', 'H', 'V'],['N', 'U', 'I', 'H', 'M', 'QU']]
     boggleTray = getRandomBoggleTray(diceCombination)
     printBoggleTray(boggleTray)
     print("Start typing your words! (press enter after each word and enter 'X' when done):")
