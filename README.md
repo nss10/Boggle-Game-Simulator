@@ -1,4 +1,6 @@
 # Boggle game simulator
+>Problem statement extracted from Advanced Python Programming course.
+> Southern Illinois University,Carbondale.
 
 This is a boggle game simulator built as a part of Advanced Python Programming course work.
 This project is built by keeping two main aspects in mind. 
@@ -205,5 +207,4 @@ The word TOAST is worth 2 points.
 
 Your total score is 6 points!
 
->Problem statement extracted from Advanced Python Programming course.
-> Southern Illinois University,Carbondale.
+
